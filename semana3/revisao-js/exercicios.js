@@ -4,7 +4,7 @@ function inverteArray(array) {
    let entrada = [];
    while (array.length) {
      entrada.push(array.pop());
-   console.log(entrada)
+   
    }
  
    return entrada;
@@ -17,10 +17,15 @@ function inverteArray(array) {
  //Exercício 2
  
  function retornaNumerosParesElevadosADois (array) {
-    // implemente sua lógica aqui
- 
+    let novoArray =[]
+    for(let i = 0;i <array.lenght;i++){
+       if(array[i] % 2 === 0){
+          novoArray.push(array[i] * array[i])
+       }
+    }
+ return novoArray
  }
- 
+ retornaNumerosParesElevadosADois
  //Exercício 3
  
  function retornaNumerosPares (array) {
