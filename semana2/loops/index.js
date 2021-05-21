@@ -69,17 +69,13 @@ for (let i = 0; i < arrayOriginal.length;i++){
 } */ 
 
 /* imprimeArray1() */
-let ar =[]
+
 const imprimeArray2 = () =>{
     for (var i = 0; i < arrayOriginal.length; i++) {
         if(i % 2 === 0) { 
-            ar.push(arrayOriginal[i])
-            console.log(arrayOriginal[i])
-        }
+            
     }
      
      }
- 
-
-imprimeArray2()
+    }
 
