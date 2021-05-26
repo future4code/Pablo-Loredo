@@ -1,0 +1,49 @@
+.header {
+    display: flex;
+    background-color: orange;
+    justify-content: space-between;
+    align-items: center;
+    height:3%;
+    padding: 1%;
+    grid-column: 1/-1;
+    list-style: none;
+  }
+  .footer {
+  display: flex;
+  background-color: orange;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  grid-column: 1/-1;
+  position: fixed;
+  bottom: 0px;
+}
+
+
+video {
+    display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 2px 5px darkgray;
+  text-align: center;
+  width: 100%;
+  color: black;
+  
+}
+
+main{
+    display: grid;
+    min-height: 120vh;
+    grid-template-columns: repeat(3,1fr);  
+}
+
+
+  
+
+  
+  
+  
+  
+  
+  
