@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "2b205fd0-b2c3-4ee5-9a61-b3c574c026d3",
+		"name": "Labefy",
+		"description": "## Descrição\n</br>Esta API gerencia playlists e músicas.\n```\n\tFeito pela Labenu. Todos os direitos reservados\n```\n\n## Instruções gerais.\n\n**Autenticação**\n\nToda requisição deve ter uma identificação de quem está fazendo a requisição. Ela deve ser enviada por meio do header `Authorization`, da seguinte forma:\n\n`Authorization: \"nome-sobrenome-turma\"`\n\nPor exemplo, se meu nome é Bob Marley e eu sou da turma Newton, o header deve ser:\n\n`Authorization: \"bob-marley-newton\"`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllPlaylists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pablo-loredo-molina",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				},
+				"description": "### Descrição:\nEsta requisição serve para ver o `id` e o `name` de todas as suas playlists.\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n### Output:\n**Body**\n<br/>`quantity`: quantitdade de playlists\n<br/>`list`: lista com as playlists\n<br/> `id`: id de cada playlist\n<br/> `name`: nome de cada playlist\n\n```\n{\n    \"result\": {\n        \"quantity\": \"number\",\n        \"list\": [\n            {\n                \"id\": \"string\",\n                \"name\": \"string\"\n            }\n        ]\n    }\n}\n```\n"
+			},
+			"response": []
+		},
+		{
+			"name": "searchPlaylist",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "pablo-loredo-molina"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=Samba",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Samba"
+						}
+					]
+				},
+				"description": "### Descrição:\nEssa requisição parmite pesquisar por uma playlist, usando o nome dela ou parte dele.\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Query String**\n<br/> `name`: nome da playlist ou parte dele (obrigatório)\n```\n\tname:\"string\" \n```\n\n### Output:\n**Body**\n<br/> `quantity`: quantidade de playlists encontradas\n<br/> `list`: array com as playlists\n<br/> `id`: id de cada playlist\n<br/> `name`: nome de cada playlist\n```\n{\n    \"result\": {\n    \t\"quantity\": \"number\", \n        \"list\": [\n            {\n                \"id\": \"string\", \n                \"name\": \"string\" \n            }\n        ]\n    }\n}\n```\n\n\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "getPlaylistTracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "pablo-loredo-molina"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId",
+						"tracks"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "51129ada-6afe-4cf8-91f6-50d2c68f3424"
+						}
+					]
+				},
+				"description": "### Descrição:\nEsta requisição permite verificar quais músicas estão em uma determinada playlist\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Path Param**\n<br/>`playlistId`: id da playlist (obrigatório)\n\n### Output:\n**Body**\n<br/> `quantity`: quantidade de músicas da playlist\n<br/> `tracks`: array com as informações das músicas\n<br/> `id`: id de cada música\n<br/> `name`: nome de cada música\n<br/> `artist`: cantor ou band da música\n<br/>`url`: URL da música para ser tocada\n```\n{\n    \"result\": {\n        \"quantity\": \"number\",\n        \"tracks\": [ \n            {\n                \"id\": \"string\", \n                \"name\": \"string\", \n                \"artist\": \"string\",\n                \"url\": \"string\"\n            }\n        ]\n    }\n}\n```\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "createPlaylist",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "pablo-loredo-molina",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Rap\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				},
+				"description": "### Descrição:\nEssa requisição cria uma nova playlist. \n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n**Body**\n<br/>`name`: nome da playlist (obrigatório)\n```\n{\n\t\"name\": \"string\" \n}\n```"
+			},
+			"response": [
+				{
+					"name": "createPlaylist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "auth",
+								"value": "authentication-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Rap\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/playlists/createPlaylist",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"playlists",
+								"createPlaylist"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "addTrackToPlaylist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "pablo-loredo-molina"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Iori Incorporado\",\n\t\"artist\": \"Sain\",\n\t\"url\": \"https://www.youtube.com/watch?v=zlxdvnkMs_M\"\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId",
+						"tracks"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "51129ada-6afe-4cf8-91f6-50d2c68f3424"
+						}
+					]
+				},
+				"description": "### Descrição:\nEssa requisição adiciona uma música a uma playlist existente\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Path Param**\n<br/>`playlistId`: id da playlist (obrigatório)\n\n**Body**\n<br/>`name`: nome da música (obrigatório)\n<br/>`artist`: cantor ou banda da música (obrigatório)\n<br/>`url`: URL da música para ser tocada (obrigatório)\n```\n{\n\t\"name\": \"string\", \n\t\"artist\": \"string\",\n\t\"url\": \"string\"\n}\n```\n\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "deletePlaylist",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "pablo-loredo-molina"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "320727a0-bb91-4c5e-9829-3425d1f4c6be"
+						}
+					]
+				},
+				"description": "### Descrição:\nEsta requisição serve para deletar alguma playlist.\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Path Param**\n<br/>`playlistId`: id da playlist (obrigatório)\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "removeTrackFromPlaylist",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "pablo-loredo-molina"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks/:trackId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId",
+						"tracks",
+						":trackId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "e979f111-a54a-44cf-a0a2-2be8dc645c05"
+						},
+						{
+							"key": "trackId",
+							"value": "7c19f748-df1b-4c4a-af45-02b206cfbc71"
+						}
+					]
+				},
+				"description": "### Descrição:\nEsta requisição serve para deletar alguma música de alguma playlist\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Path Params**\n<br/>`playlistId`: id da playlist (obrigatório)\n<br/>`trackId`: id da música (obrigatório)\n"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
